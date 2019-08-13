@@ -1,5 +1,6 @@
 const electron = require('electron')
 const prompt = require('electron-prompt');
+const { dialog } = require('electron').remote
 
 // Get jQuery
 var script = document.createElement('script');
@@ -12,6 +13,7 @@ var ingredients = [];
 
 // Collect Buttons
 const addIngredientsBtn = document.getElementById('add-ingredient')
+const saveRecipeBtn = document.getElementById('save-recipe')
 
 // Button Responses
 addIngredientsBtn.addEventListener('click', function (event) {
@@ -42,6 +44,21 @@ addIngredientsBtn.addEventListener('click', function (event) {
         }
     })
     .catch(console.error);
+})
+
+saveRecipeBtn.addEventListener('click', function (event) {
+    
+    // Check For Valid Input
+    var recipeName = document.getElementById("recipe-name").value;
+    
+    if (recipeName !== "") {
+        // Save The Recipe
+        
+    } else {
+        // Show An Error
+        dialog.showErrorBox('Name Error', 'Please Enter a Recipe Name to Continue.')
+    }
+
 })
 
 // Function to Update List of Ingredients
