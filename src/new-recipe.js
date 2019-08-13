@@ -53,7 +53,7 @@ saveRecipeBtn.addEventListener('click', function (event) {
     
     if (recipeName !== "") {
         // Save The Recipe
-        
+
     } else {
         // Show An Error
         dialog.showErrorBox('Name Error', 'Please Enter a Recipe Name to Continue.')
@@ -64,39 +64,61 @@ saveRecipeBtn.addEventListener('click', function (event) {
 // Function to Update List of Ingredients
 function updateTable(listOfIngredients) {
 
-    // Delete Existing Table Table
-    document.getElementById('ingredientsTable').remove();
-
-    // Create New Table
-    var tableContents = `
-    <table class="table table-striped" id="ingredientsTable">
-        <thead>
-            <tr>
-            <th scope="col">Ingredient</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>`;
-    
-    // Loop Through Ingredients and Redraw Table
-    for (var i = 0; i < listOfIngredients.length; i++) {
-        //console.log(listOfIngredients[i]);
-        
-        // Add Item to Table
-        tableContents += `
-        <tr>
-            <td>` + listOfIngredients[i][0] + `</td>
-            <td>` + listOfIngredients[i][1] + `</td>
-            <td><button class="btn btn-danger btn-block">Delete</button></td>
-        </tr>
-        `;
+    try {
+        // Delete Existing Table Table
+        document.getElementById('ingredientsTable').remove();
+    } catch(error) {
+        console.error(error);
     }
 
-    // Finish Creating Table
-    tableContents += '</tbody></table>';
+    if (ingredients.length != 0) {
+        // Create New Table
+        var tableContents = `
+        <table class="table table-striped" id="ingredientsTable">
+            <thead>
+                <tr>
+                <th scope="col">Ingredient</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>`;
 
-    // Create Updated Table
-    $( "#tableDiv" ).html(tableContents);
+        // Button Numbering
+        var currentBtn = 0;
+        
+        // Loop Through Ingredients and Redraw Table
+        for (var i = 0; i < listOfIngredients.length; i++) {
+            //console.log(listOfIngredients[i]);
+            
+            // Add Item to Table
+            tableContents += `
+            <tr>
+                <td>` + listOfIngredients[i][0] + `</td>
+                <td>` + listOfIngredients[i][1] + `</td>
+                <td><button class="btn btn-danger btn-block" onclick="deleteIngredient(` + currentBtn + `);">Delete</button></td>
+            </tr>
+            `;
+
+            // Increment Current Button
+            currentBtn++;
+        }
+
+        // Finish Creating Table
+        tableContents += '</tbody></table>';
+
+        // Create Updated Table
+        $( "#tableDiv" ).html(tableContents);
+    }
+}
+
+// Delete Ingredient From List
+function deleteIngredient(ingredientIndex) {
+
+    // Delete Ingredient From Array
+    ingredients.splice(ingredientIndex, 1);
+
+    // Redraw Table
+    updateTable(ingredients);
 
 }
