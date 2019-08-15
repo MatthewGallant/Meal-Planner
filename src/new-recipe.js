@@ -1,6 +1,10 @@
 const electron = require('electron')
 const prompt = require('electron-prompt');
 const { dialog } = require('electron').remote
+const remote = require('electron').remote;
+
+const Store = require('electron-store');
+const store = new Store();
 
 // Get jQuery
 var script = document.createElement('script');
@@ -52,7 +56,36 @@ saveRecipeBtn.addEventListener('click', function (event) {
     var recipeName = document.getElementById("recipe-name").value;
     
     if (recipeName !== "") {
+        // Assemble Recipe
+        var recipeInfo = "|:" + recipeName + ":";
+
+        for (var i = 0; i < ingredients.length; i++) {
+            recipeInfo += "[" + ingredients[i][0] + "," + ingredients[i][1] + "]";
+        }
+
+        recipeInfo += "|";
+
         // Save The Recipe
+        if (store.get('recipes') != undefined) {
+            store.set('recipes', store.get('recipes') + recipeInfo);
+        } else {
+            store.set('recipes', recipeInfo);
+        }
+
+        // Setup Messagebox
+        const options = {
+            type: 'info',
+            title: 'Recipe Saved',
+            message: 'The recipe was saved.',
+          };
+
+        dialog.showMessageBox(null, options);
+
+        // Close Window
+        var window = remote.getCurrentWindow();
+        window.close();
+
+        // Produces Something Like |:BBQ Chicken:[Chicken Pack,1][BBQ Sauce,1]|
 
     } else {
         // Show An Error
