@@ -8,41 +8,29 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Meal Planner v1.0 - New Recipe</title>
+    <title>Meal Planner v1.0 - View Recipes</title>
   </head>
   <body>
 
     <br />
-    
-    <div class="container">
 
-      <div style="text-align: center;">
-        <h1>New Recipe</h1>
-        <p>Please enter the data below to continue.</p>
-      </div>
+        <div style="text-align: center;">
+            <h1>View Recipes</h1>
+        </div>
 
-      <br />          
-      <input type="text" class="form-control" id="recipe-name" placeholder="Recipe Name">
-      <br />
+        <br />          
 
-    </div>
-
-    <div id="tableDiv">
-      <h2 id="ingredientsTable"></h2>
-    </div>
-
-    <div align="center">
-        <button class="btn btn-success" id="add-ingredient">Add Ingredient</button>
-        <button class="btn btn-primary" id="save-recipe">Save Recipe</button>
-    </div>
+        <div id="tableDiv">
+            <h2 id="recipesTable"></h2>
+        </div>
 
     <br />
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="new-recipe.js"></script>
+    <script src="view-recipes.js"></script>
   </body>
 </html>
