@@ -2,6 +2,8 @@ const electron = require('electron')
 const prompt = require('electron-prompt');
 const { dialog } = require('electron').remote
 const remote = require('electron').remote;
+const path = require('path')
+const BrowserWindow = electron.remote.BrowserWindow
 
 const Store = require('electron-store');
 const store = new Store();
@@ -95,8 +97,24 @@ function updateTable() {
 
 // Edit Recipe
 function editRecipe(recipeIndex) {
+
+    // Save recipeIndex to DB
+    store.set("recipeIndex", recipeIndex);
     
     // Open Edit Window
+    const modalPath = path.join('file://', __dirname, 'edit-recipe.html')
+    let win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+
+    win.on('close', function () { win = null })
+    win.loadURL(modalPath)
+    win.show()
+
 }
 
 // Delete Recipe From List
