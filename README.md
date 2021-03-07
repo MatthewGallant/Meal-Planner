@@ -7,7 +7,7 @@ NOTE: This project is not completed at this time.
 You will need to have NodeJS installed as well Electron.
 
 ## Running
-After the prerequisites are met, simple ```cd``` into the directory and run ```npm start```.
+After the prerequisites are met, simply ```cd``` into the directory and run ```npm start```.
 
 ## License
-This project is licensed under the MIT license availabkle in the ```LICENSE``` file.
+This project is licensed under the MIT license available in the ```LICENSE``` file.
